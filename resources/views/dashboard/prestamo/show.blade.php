@@ -31,7 +31,7 @@
 
         <div class="form-group">
             <label for="licenciatura_id">licenciatura</label>
-            <input class="form-control" type="text" name="licenciatura_id" id="licenciatura_id" value="{{ $prestamo->licenciatura_id }}" readonly>
+            <input class="form-control" type="text" name="licenciatura_id" id="licenciatura_id" value="{{ $prestamo->licenciatura->nombre }}" readonly>
         </div>
 
         <div class="form-group">

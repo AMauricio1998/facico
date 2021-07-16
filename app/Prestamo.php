@@ -20,4 +20,14 @@ class Prestamo extends Model
         'hora_dev',
         'activo',
     ];
+
+     
+    public function licenciatura(){
+        return $this->belongsTo(licenciatura::class);
+    }
+
+    public function imagen(){
+        return $this->hasOne(PrestamoImage::class);
+    }
+
 }

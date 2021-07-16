@@ -6,12 +6,20 @@ use App\Prestamo;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePrestamoPost;
 use App\licenciatura;
+use App\PrestamoImage;
+use App\User;
 
 class PrestamoController extends Controller
 {
     
-    public function index()
+    public function index(User $user)
     {
+         
+
+        if($user->tip_usu == '2'){
+            return redirect()->route("home");
+        }
+
         $prestamos = Prestamo::orderBy('created_at', 'desc')
         ->where('activo', '=', '1')
         ->paginate(5);
@@ -48,7 +56,10 @@ class PrestamoController extends Controller
     
     public function edit(Prestamo $prestamo)
     {
+        
         $licenciaturas = licenciatura::pluck('id', 'nombre');
+
+        $prestamo->imagen->image;
 
         return view('dashboard.prestamo.edit', [
             'prestamo' => $prestamo, 
@@ -70,6 +81,23 @@ class PrestamoController extends Controller
         $prestamo->delete();
 
         return back()->with('status', 'Prestamo eliminado con exito!');
+    }
+
+    public function imagen(Request $request, Prestamo $prestamo)
+    {    
+        $request->validate([
+            'image' => 'required|mimes:jpeg,png,jpg,bmp|max:10240', //10Mb
+        ]); 
+
+        $filename = time() .".". $request->image->extension();
+
+        $request->image->move(public_path('images'), $filename);
+
+        PrestamoImage::create(['image' => $filename, 'prestamo_id' => $prestamo->id]);
+
+        return back()->with('status', 'Imagen cargada con exito!');
+
+
     }
 
 

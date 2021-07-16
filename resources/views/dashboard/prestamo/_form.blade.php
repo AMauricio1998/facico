@@ -50,8 +50,8 @@
         <div class="form-group">
             <label for="licenciatura_id">Licenciatura</label>
                 <select class="form-control" name="licenciatura_id" id="licenciatura_id">
-                    @foreach($licenciaturas as $nombre=>$id )
-                        <option value="{{$id}}"> {{$nombre}} </option>
+                    @foreach($licenciaturas as $nombre => $id )
+                        <option {{ $prestamo->licenciatura_id == $id ? 'selected="selected"' : '' }}  value="{{$id}}"> {{$nombre}} </option>
                     @endforeach
                 </select>
             @error('licenciatura_id')

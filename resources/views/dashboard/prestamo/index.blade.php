@@ -5,6 +5,8 @@
 
 @section('content')
 
+                   
+
 <a class="btn btn-success" href="{{ route('prestamo.create') }}">Crear prestamo</a>
 
     <table class="table table-dark table-striped ">
@@ -65,7 +67,7 @@
                 <td>{{$prestamo->telefono}}</td>
                 <td>{{$prestamo->num_cuenta}}</td>
                 <td>{{$prestamo->email}}</td>
-                <td>{{$prestamo->licenciatura_id}}</td>
+                <td>{{$prestamo->licenciatura->nombre}}</td>
                 <td>{{$prestamo->insumo}}</td>
                 <td>{{$prestamo->fecha_pres}}</td>
                 <td>{{$prestamo->hora_pres}}</td>

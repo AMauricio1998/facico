@@ -9,5 +9,24 @@
         @method('PUT')
         @include('dashboard.prestamo._form')
     </form>
+    
+<br>
+
+
+    <form action="{{ route('prestamo.imagen', $prestamo) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="row">
+
+            <div class="col">
+                <input type="file" name="image"  class="form-control"> 
+            </div>
+
+            <div class="col">
+                <input type="submit" value="Subir" class="btn btn-primary">
+            </div>
+        </div>
+
+        
+    </form>
 
 @endsection
