@@ -10,32 +10,39 @@
     
 
     <ul class="navbar-nav mr-auto">
-      <a class="nav-link" href="#">Bienvenido {{ Session::get('session_name' )}}</a>
-      @if(empty(session('session_tipo') == 2))
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           CRUD
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('prestamo.index') }}">Prestamos</a>
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{{ route('licenciatura.index') }}">Licenciaturas</a>
-          <a class="dropdown-item" href="#">Usuarios</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{ route('user.index') }}">Usuarios</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Inventario</a>
         </div>
       </li>
-      @endif
     </ul>
 
     <ul class="navbar-nav ">
 
       <li class="nav-item">
-        @if(empty(session('session_id')))
-        <a class="nav-link" href="#">Login <span class="sr-only"></span></a>
-        @else
+        
         <li class="nav-item"></li>
-        <a class="nav-link" href="{{ route('logout') }}">Logout <span class="sr-only"></span></a>
-        @endif
+
+      <a class="nav-link" href="{{ route('logout') }}"
+        onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+         {{ __('Logout') }}
+     </a>
+
+     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+         @csrf
+     </form>
+
+
       </li>
 
       <li class="nav-item dropdown">

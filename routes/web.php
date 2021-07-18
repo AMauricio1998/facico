@@ -11,21 +11,23 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
- Route::get('/home', function () {
-     return view('welcome');
- })->name('home');
+  Route::get('/', function () {
+      return view('welcome');
+  })->name('home');
 
 Route::resource('dashboard/prestamo', 'PrestamoController');
 Route::post('dashboard/prestamo/{prestamo}/image', 'PrestamoController@imagen')->name('prestamo.imagen');
 
 Route::resource('dashboard/licenciatura', 'licenciaturaController');
+Route::resource('dashboard/user', 'UserController');
 
 
 //---------------------------------------------------------------------------------
 
-Route::name('login')->get('/', 'LoginController@login');
-Route::name('validar')->post('validar/', 'LoginController@validar');
-Route::name('logout')->get('logout/', 'LoginController@logout');
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

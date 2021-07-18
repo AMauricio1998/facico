@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use App\User;
+use Attribute;
 use Closure;
+use Illuminate\Http\Request;
 
 class CheckRolUser
 {
@@ -14,12 +16,11 @@ class CheckRolUser
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(User $request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
-        if(empty(session('session_tipo') == 2)){
-            return redirect('home');
-        }else{
-            return redirect()->route("prestamo.index");
-        }
+         if(auth()->user()->rol->key == 'admin'){
+             return $next($request);
+         }   
+         return redirect('/home');
     }
 }

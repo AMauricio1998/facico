@@ -11,15 +11,15 @@ use App\User;
 
 class PrestamoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     
     public function index(User $user)
     {
-         
-
-        if($user->tip_usu == '2'){
-            return redirect()->route("home");
-        }
-
         $prestamos = Prestamo::orderBy('created_at', 'desc')
         ->where('activo', '=', '1')
         ->paginate(5);
