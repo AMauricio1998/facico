@@ -15,14 +15,15 @@ class PrestamoController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('rol.user');
     }
 
     
     public function index(User $user)
     {
-        $prestamos = Prestamo::orderBy('created_at', 'desc')
+        $prestamos = Prestamo::with('licenciatura')->orderBy('created_at', 'desc')
         ->where('activo', '=', '1')
-        ->paginate(5);
+        ->paginate(10);
 
         return view('dashboard.prestamo.index', ['prestamos' => $prestamos]);
     }
@@ -33,6 +34,18 @@ class PrestamoController extends Controller
         $licenciaturas = licenciatura::pluck('id', 'nombre');
 
         return view("dashboard.prestamo.create", ['prestamo' => new Prestamo(), 'licenciaturas' => $licenciaturas ]);
+    }
+
+    public function proccess(Prestamo $prestamo){
+
+        if($prestamo->activo == '1'){
+            $prestamo->activo = '0';
+        }else{
+            $prestamo->activo = '1';
+        }
+        $prestamo->save();
+
+        return response()->json($prestamo->activo);
     }
 
    

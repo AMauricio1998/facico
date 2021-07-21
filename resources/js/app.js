@@ -6,7 +6,7 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+import router from './assets/router.js';
 
 /**
  * The following block of code may be used to automatically register your
@@ -27,6 +27,21 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// Definir un nuevo componente llamado button-counter
+// Vue.component('list-prestamo',
+//     require("./components/PrestamoListComponent.vue").default
+// );
+
+Vue.component('modal-prestamo',
+    require("./components/PrestamoModalComponent.vue").default
+);
+
+Vue.component('prestamo-list-default',
+    require("./components/PrestamoListDefaultComponent.vue").default
+);
+
+
 const app = new Vue({
     el: '#app',
+    router,
 });

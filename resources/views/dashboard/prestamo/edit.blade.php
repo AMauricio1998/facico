@@ -25,8 +25,7 @@
                 <input type="submit" value="Subir" class="btn btn-primary">
             </div>
         </div>
-
-        
     </form>
+_form
 
 @endsection

@@ -18,7 +18,7 @@ class UserController extends Controller
     
     public function index()
     {
-        $users = User::orderBy('created_at', 'desc')
+        $users = User::with('rol')->orderBy('created_at', 'desc')
         ->paginate(5);
 
         return view('dashboard.user.index', ['users' => $users]);
@@ -38,7 +38,7 @@ class UserController extends Controller
             'name' => $request['name'],
             'surname' => $request['surname'],
             'email' => $request['email'],
-            'password' => Hash::make($request['password']),
+            'password' => $request['password'],
         ]);
 
         return back()->with('status', 'Licenciatura registrada con exito!');

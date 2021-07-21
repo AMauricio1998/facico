@@ -9,4 +9,8 @@ class licenciatura extends Model
     protected $fillable = [
         'nombre'
     ];
+
+    public function prestamo(){
+        return $this->hasMany(prestamo::class);
+    }
 }

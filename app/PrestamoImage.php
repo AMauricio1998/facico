@@ -8,7 +8,7 @@ class PrestamoImage extends Model
 {
     protected $fillable = [
         'prestamo_id',
-        'image'
+        'image',
     ];
 
     public function prestamo(){

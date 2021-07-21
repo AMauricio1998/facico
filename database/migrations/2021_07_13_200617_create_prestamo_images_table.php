@@ -18,6 +18,7 @@ class CreatePrestamoImagesTable extends Migration
             $table->bigInteger('prestamo_id');
             $table->string('image');
             $table->timestamps();
+
         });
     }
 

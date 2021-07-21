@@ -44,5 +44,10 @@ class User extends Authenticatable
         return $this->belongsTo(Rol::class);
     }
 
-    
+    //public function getNameAttribute($value){
+    //    return strtoupper($value);
+    //}
+    public function setPasswordAttribute($value){
+        $this->attributes["password"] =  Hash::make($value);
+    }
 }

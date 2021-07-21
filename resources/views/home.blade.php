@@ -22,10 +22,16 @@
                     <p class="text-center" style="font-family: 'Times New Roman', Times, serif">Eres usuario tipo {{ auth()->user()->rol->name }} </p>
                     
                    
-
-                    
-
                     <br>
+
+                    <a class="dropdown-item text-center" style="font-size: large; font-family: fantasy">Contenido para usuarios</a>
+                        <ul class="nav nav-pills justify-content-center">
+                            <li class="nav-item">
+                              <a class="nav-link active" href="/">Lista de prestamos</a>
+                            </li>
+                          </ul>
+
+
 
                     @if(auth()->user()->rol->key == 'admin')
                     
@@ -38,7 +44,7 @@
                               <a class="nav-link " href="{{ route('licenciatura.index') }}">Licenciaturas</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link " href="#">Usuario</a>
+                              <a class="nav-link "  href="{{ route('user.index') }}">Usuario</a>
                             </li>
                             <li class="nav-item">
                               <a class="nav-link " href="#" >Inventario</a>

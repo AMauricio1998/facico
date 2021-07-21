@@ -5,7 +5,7 @@
 
 @section('content')
 
-                   
+
 
 <a class="btn btn-success" href="{{ route('prestamo.create') }}">Crear prestamo</a>
 
@@ -50,6 +50,9 @@
                     Hora de devolucion
                 </td>
                 <td>
+                    Activo
+                </td>
+                <td>
                     Fecha de registro
                 </td>
                 <td>
@@ -57,7 +60,7 @@
                 </td>
             </tr>
         </thead>
-    
+
         <tbody>
             @foreach ($prestamos as $prestamo )
             <tr>
@@ -73,19 +76,26 @@
                 <td>{{$prestamo->hora_pres}}</td>
                 <td>{{$prestamo->fecha_dev}}</td>
                 <td>{{$prestamo->hora_dev}}</td>
+                <td>{{$prestamo->activo}}</td>
                 <td>{{$prestamo->created_at->format('d-m-Y')}}</td>
                 <td>
-                    <a href="{{ route('prestamo.show', $prestamo->id) }}" class="btn btn-primary float-right submit btn-sm mt-1">Detalle</a>  
-                    <a href="{{ route('prestamo.edit', $prestamo->id) }}" class="btn btn-success float-right submit btn-sm mt-1">Editar</a>                                 
+                    <a href="{{ route('prestamo.show', $prestamo->id) }}" class="btn btn-primary float-right submit btn-sm mt-1">Detalle</a>
+                    <a href="{{ route('prestamo.edit', $prestamo->id) }}" class="btn btn-success float-right submit btn-sm mt-1">Editar</a>
 
-                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $prestamo->id }}" class="btn btn-danger float-right submit btn-sm mt-1">Borrar</button>  
+        <button data-id="{{ $prestamo->id }}"
+            class="approved btn btn-{{ $prestamo->activo == 1 ?  "success" : "danger" }}">
+            {{$prestamo->activo == 1 ? "Devolver": "Devuelto"}}
+        </button>
+
+
+                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $prestamo->id }}" class="btn btn-danger float-right submit btn-sm mt-1">Borrar</button>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
 
-    
+
 
     {{ $prestamos->links() }}
 
@@ -117,6 +127,53 @@
       </div>
 
       <script>
+
+
+        document.querySelectorAll(".approved").forEach(button => button. addEventListener("click", function(){
+            console.log("Hola mundo: "+ button.getAttribute("data-id"))
+
+            var id = button.getAttribute("data-id");
+
+            var formData = new FormData();
+            formData.append("_token", '{{ csrf_token() }}');
+
+            fetch("{{ URL::to("/") }}/dashboard/prestamo/proccess/"+id,{
+              method: 'POST',
+              body: formData
+            })
+                          .then(response => response.json())
+                          .then(approved => {
+                            if(approved == 1){
+                              button.classList.remove('btn-danger');
+                              button.classList.add('btn-success');  
+                              button.innerHTML = "Devolver";
+                            }else{
+                              button.classList.remove('btn-success');
+                              button.classList.add('btn-danger');
+                              button.innerHTML = "Devuelto";
+                            }
+                              });
+
+            //$.ajax({
+            //  method: "POST",
+            //  url: "{{ URL::to("/") }}/dashboard/post-comment/proccess/"+id,
+            //  data:{'_token': '{{ csrf_token() }}'}
+            //})
+            //  .done(function( approved ) {
+            //      if(approved == 1){
+            //        $(button).removeClass('btn-danger');
+            //        $(button).addClass('btn-success');
+            //        $(button).text("Aprobado");
+            //      }else{
+            //        $(button).addClass('btn-danger');
+            //        $(button).removeClass('btn-success');
+            //        $(button).text("Rechazado");
+            //      }
+            //  });
+
+          }))
+
+
         window.onload = function(){
         $('#deleteModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
@@ -124,7 +181,7 @@
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
-            action = $('#formDelete').attr('data-action').slice(0,-1) 
+            action = $('#formDelete').attr('data-action').slice(0,-1)
             action += id
             console.log(action)
 
@@ -134,7 +191,7 @@
             modal.find('.modal-title').text('Vas a borrar el registro con id  ' + id)
           })
         }
-      </script>
+       </script>
 
 @endsection
 

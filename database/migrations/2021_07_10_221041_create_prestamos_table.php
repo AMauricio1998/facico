@@ -28,6 +28,12 @@ class CreatePrestamosTable extends Migration
             $table->time('hora_dev');
             $table->string('activo');
             $table->timestamps();
+
+
+            $table->foreign('licenciatura_id')
+                ->references('id')
+                ->on('licenciaturas')
+                ->onDelete('cascade');
         });
     }
 
