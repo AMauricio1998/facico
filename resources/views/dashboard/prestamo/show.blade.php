@@ -3,7 +3,8 @@
 
 @section('content')
 
-
+<div class="container-lg bg-white" style="width: 50rem; border-radius: 15px;">
+    <hr>
         <div class="form-group">
             <label for="nombre">Nombre</label>
             <input class="form-control" type="text" name="nombre" id="nombre" value="{{ $prestamo->nombre }}" readonly>
@@ -63,5 +64,7 @@
             <label for="hora_dev">Activo</label>
             <input class="form-control" type="number" value="1" name="activo" id="activo" value="{{ $prestamo->activo }}" readonly>
         </div>    
+    <hr>
+</div>
     
 @endsection

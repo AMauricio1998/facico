@@ -16,10 +16,10 @@
 
    
 </head>
-<body style="background-image: url('{{ asset('images/hardwood.jpg')}}');">
+<body style="background-image: url('{{ asset('images/background.jpg')}}');">
 
 
-    <div id="app">
+    <div id="app" >
         @include('web.partials.nav-header-main')
 
             <div class="container mb-3 mt-3" style="display: flex; justify-content: center; align-items: center;">

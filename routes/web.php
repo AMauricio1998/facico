@@ -20,16 +20,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('dashboard/prestamo', 'PrestamoController');
 Route::post('dashboard/prestamo/{prestamo}/image', 'PrestamoController@imagen')->name('prestamo.imagen');
+Route::post('dashboard/prestamo/proccess/{prestamo}', 'PrestamoController@proccess');
+
+Route::get('/prestamo-all', 'PrestamoController@prestamoall')->name('prestamo.all');
+
+
 
 Route::resource('dashboard/licenciatura', 'licenciaturaController');
 Route::resource('dashboard/user', 'UserController');
-
-
 Route::resource('dashboard/contact', 'ContactController')->only([
   'index', 'show', 'destroy',
 ]);
+//------------------Excel--------------------------------------------------------
 
-Route::post('dashboard/prestamo/proccess/{prestamo}', 'PrestamoController@proccess');
+Route::get('/dashboard/excel/prestamo-export', 'PrestamoController@export')->name('prestamo.export');
 
 
 //---------------------------------------------------------------------------------
@@ -38,8 +42,6 @@ Route::post('dashboard/prestamo/proccess/{prestamo}', 'PrestamoController@procce
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-
 Route::get('/', 'web\WebController@index')->name('index');
 Route::get('/detail/{id}', 'web\WebController@detail');
 Route::get('/prestamo-licenciatura/{id}', 'web\WebController@prestamo_licenciatura');

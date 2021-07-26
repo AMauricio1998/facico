@@ -41,7 +41,7 @@ class UserController extends Controller
             'password' => $request['password'],
         ]);
 
-        return back()->with('status', 'Licenciatura registrada con exito!');
+        return back()->with('status', 'Usuario registrado con exito!');
     }
 
     

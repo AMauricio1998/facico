@@ -5,9 +5,9 @@
 
 @section('content')
 
-<a class="btn btn-success" href="{{ route('user.create') }}">Crear usuario</a>
+<a class="btn btn-success  mt-2  mb-2" href="{{ route('user.create') }}"><i class="fa fa-1x fa-plus-square"></i> Crear usuario</a>
 
-    <table class="table table-dark table-striped ">
+    <table class="table table-dark table-striped " style="border-radius: 10px; overflow: hidden;">
 
         <thead class="thead-light text-center">
             <tr>
@@ -45,10 +45,11 @@
                 <td>{{$user->rol->key}}</td>
                 <td>{{$user->created_at->format('d-m-Y')}}</td>
                 <td>
-                    <a href="{{ route('user.show', $user->id) }}" class="btn btn-primary float-right submit btn-sm mt-1">Detalle</a>  
-                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-success float-right submit btn-sm mt-1">Editar</a>                                 
-
-                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $user->id }}" class="btn btn-danger float-right submit btn-sm mt-1">Borrar</button>  
+                  <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $user->id }}" class="btn btn-danger float-right submit btn-sm  mt-2 ml-2 fa fa-1x fa-trash-alt"></button>  
+                  
+                  <a href="{{ route('user.edit', $user->id) }}" class="btn btn-success float-right submit btn-sm mt-2 ml-2 fa fa-1x fa-edit"></a>                                 
+                    <a href="{{ route('user.show', $user->id) }}" class="btn btn-primary float-right submit btn-sm mt-2 ml-2 fa fa-1x fa-eye"></a>  
+                    
                 </td>
             </tr>
             @endforeach
@@ -69,7 +70,7 @@
               </button>
             </div>
             <div class="modal-body">
-                <p>¿Seguro de que quiere Borrar el registro seleccionado?</p>
+                <p>¿Seguro de que quiere borrar el registro seleccionado?</p>
                 <p>El registro de borrara permanentemente</p>
             </div>
             <div class="modal-footer">
@@ -101,7 +102,7 @@
             $('#formDelete').attr('action', action)
 
             var modal = $(this)
-            modal.find('.modal-title').text('Vas a borrar el registro con id  ' + id)
+            modal.find('.modal-title').text('Vas a borrar el usuario con id  ' + id)
           })
         }
       </script>

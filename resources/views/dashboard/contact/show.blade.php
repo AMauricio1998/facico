@@ -2,6 +2,8 @@
 
 @section('content')
 
+<div class="container-lg bg-white" style="width: 50rem; border-radius: 15px;">
+    <hr>
 
 <div class="form-group">
     <label for="title">Nombre</label>
@@ -21,6 +23,9 @@
 <div class="form-group">
     <label for="content">Contenido</label>
     <textarea readonly class="form-control"  rows="3">{{ $contact->message }}</textarea>
+</div>
+
+<hr>
 </div>
 
 

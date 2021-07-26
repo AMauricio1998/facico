@@ -2,7 +2,8 @@
 @extends('dashboard.master')
 
 @section('content')
-
+<div class="container-lg bg-white" style="width: 50rem; border-radius: 15px;">
+    <hr>
 
         <div class="form-group">
             <label for="name">Nombre</label>
@@ -23,5 +24,7 @@
             <label for="password">Password</label>
             <input class="form-control" type="password" name="password" id="password" value="{{ $user->password }}" readonly disabled>
         </div>
+     <hr>
+</div>
     
 @endsection

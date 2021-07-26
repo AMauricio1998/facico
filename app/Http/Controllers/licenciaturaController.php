@@ -18,8 +18,8 @@ class licenciaturaController extends Controller
     
     public function index()
     {
-        $licenciaturas = licenciatura::orderBy('created_at', 'desc')
-        ->paginate(5);
+        $licenciaturas = licenciatura::orderBy('created_at', 'ASC')
+        ->paginate(10);
 
         return view('dashboard.licenciatura.index', ['licenciaturas' => $licenciaturas]);
     }

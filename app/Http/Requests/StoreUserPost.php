@@ -6,6 +6,16 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUserPost extends FormRequest
 {
+
+    public function messages(){
+        return[
+            'name.required' => 'El nombre es requerido',
+            'surname.required' => 'El apellido es requerido',
+            'email.required' => 'El email es requerido',
+            'password.required' => 'La contraseña es requerida',
+        ];
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      *

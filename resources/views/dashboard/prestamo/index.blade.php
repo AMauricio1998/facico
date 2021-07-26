@@ -4,92 +4,110 @@
 @extends('dashboard.master')
 
 @section('content')
+<a class="btn btn-primary mt-2 mb-2" href="{{ route('prestamo.create') }}"><i class="fa fa-1x fa-plus-square"></i> Crear prestamo </a>
+<a class="btn btn-success mt-2 mb-2" href="{{ route('prestamo.all') }}"><i class="fa fa-1x fa-allergies"></i> Todos los prestamos </a>
+{{--  <a class="btn btn-success mt-2 mb-2" href="{{ route('prestamo.export') }}"><i class="fa fa-1x fa-file-excel"></i> Exportar </a>  --}}
+
+<form action="{{ route('prestamo.index') }}" class="form-inline mb-2">
+
+
+    <select name="created_at" class="form-control ">
+        <option value="DESC">Descendente</option>
+        <option {{ request('created_at') == "ASC" ? "selected" : '' }} value="ASC">Ascendente</option>
+    </select>
+
+    <input type="text" value="{{ request('search') }}" name="search" placeholder="Buscar..." class="form-control ml-1">
+    <button type="submit" class="btn btn-primary ml-2"><i class="fa fa-1x fa-search"></i></button>
+
+</form>
 
 
 
-<a class="btn btn-success" href="{{ route('prestamo.create') }}">Crear prestamo</a>
+    <table class="table table-dark table-striped " style="border-radius: 10px; overflow: hidden;">
 
-    <table class="table table-dark table-striped ">
-
-        <thead class="thead-light text-center">
+        <thead class="thead-dark text-center">
             <tr>
-                <td>
+                <th>
                     id
-                </td>
-                <td>
+                </th>
+                <th>
                     Nombre
-                </td>
-                <td>
+                </th>
+                <th>
                     Apellidos
-                </td>
-                <td>
+                </th>
+                <th>
                     Telefono
-                </td>
-                <td>
+                </th>
+                {{--  <th>
                     Cuenta
-                </td>
-                <td>
+                </th>  --}}
+                <th>
                     Email
-                </td>
-                <td>
+                </th>
+                <th>
                     Licenciatura
-                </td>
-                <td>
+                </th>
+                <th width="10%">
                     Insumo
-                </td>
-                <td>
+                </th>
+                <th width="10%">
                     Fecha de prestamo
-                </td>
-                <td>
+                </th>
+                <th>
                     Hora de prestamo
-                </td>
-                <td>
+                </th>
+                <th width="8.8%">
                     Fecha de devolucion
-                </td>
-                <td>
+                </th>
+                <th>
                     Hora de devolucion
-                </td>
-                <td>
+                </th>
+                {{--  <th>
                     Activo
-                </td>
-                <td>
+                </th>  --}}
+                {{--  <th>
                     Fecha de registro
-                </td>
-                <td>
+                </th>  --}}
+                <th>
                     Acciones
-                </td>
-            </tr>
+                </th>
+            </th>
         </thead>
 
-        <tbody>
+        <tbody class="text-center">
             @foreach ($prestamos as $prestamo )
             <tr>
                 <td>{{$prestamo->id}}</td>
                 <td>{{$prestamo->nombre}}</td>
                 <td>{{$prestamo->apellidos}}</td>
                 <td>{{$prestamo->telefono}}</td>
-                <td>{{$prestamo->num_cuenta}}</td>
+                {{--  <td>{{$prestamo->num_cuenta}}</td>  --}}
                 <td>{{$prestamo->email}}</td>
                 <td>{{$prestamo->licenciatura->nombre}}</td>
                 <td>{{$prestamo->insumo}}</td>
-                <td>{{$prestamo->fecha_pres}}</td>
+                {{--  <td>{{$prestamo->fecha_pres}}</td>  --}}
+                <td>{{$prestamo->created_at->format('d-m-Y')}}</td> 
                 <td>{{$prestamo->hora_pres}}</td>
                 <td>{{$prestamo->fecha_dev}}</td>
                 <td>{{$prestamo->hora_dev}}</td>
-                <td>{{$prestamo->activo}}</td>
-                <td>{{$prestamo->created_at->format('d-m-Y')}}</td>
+                {{--  <td>{{$prestamo->activo}}</td>  --}}
+                
                 <td>
-                    <a href="{{ route('prestamo.show', $prestamo->id) }}" class="btn btn-primary float-right submit btn-sm mt-1">Detalle</a>
-                    <a href="{{ route('prestamo.edit', $prestamo->id) }}" class="btn btn-success float-right submit btn-sm mt-1">Editar</a>
+                    <button data-toggle="modal" data-target="#deleteModal" 
+                    data-id="{{ $prestamo->id }}" class="btn btn-danger float-right submit btn-sm mt-2 ml-2 fa fa-1x fa-trash-alt">
+                    </button>
 
-        <button data-id="{{ $prestamo->id }}"
-            class="approved btn btn-{{ $prestamo->activo == 1 ?  "success" : "danger" }}">
-            {{$prestamo->activo == 1 ? "Devolver": "Devuelto"}}
-        </button>
+                    <a href="{{ route('prestamo.edit', $prestamo->id) }}" class="btn btn-success float-right submit btn-sm mt-2 ml-2 fa fa-1x fa-edit"></a>
+                    <a href="{{ route('prestamo.show', $prestamo->id) }}" class="btn btn-primary float-right submit btn-sm mt-2 ml-2 fa fa-1x fa-eye"></a>
+                    
+                    <button data-id="{{ $prestamo->id }}"
+                        class=" mt-2 approved fa fa-1x fa-undo-alt btn btn-{{ $prestamo->activo == 1 ?  "success" : "danger" }}">
+                        {{$prestamo->activo == 1 ? " Devolver ": " Devuelto "}}
+                    </button>
+                
+            </td>
 
-
-                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $prestamo->id }}" class="btn btn-danger float-right submit btn-sm mt-1">Borrar</button>
-                </td>
             </tr>
             @endforeach
         </tbody>
@@ -109,7 +127,7 @@
               </button>
             </div>
             <div class="modal-body">
-                <p>¿Seguro de que quiere Borrar el registro seleccionado?</p>
+                <p>¿Seguro de que quiere borrar el registro seleccionado?</p>
                 <p>El registro de borrara permanentemente</p>
             </div>
             <div class="modal-footer">
@@ -146,11 +164,11 @@
                             if(approved == 1){
                               button.classList.remove('btn-danger');
                               button.classList.add('btn-success');  
-                              button.innerHTML = "Devolver";
+                              button.innerHTML = " Devolver ";
                             }else{
                               button.classList.remove('btn-success');
                               button.classList.add('btn-danger');
-                              button.innerHTML = "Devuelto";
+                              button.innerHTML = " Devuelto ";
                             }
                               });
 

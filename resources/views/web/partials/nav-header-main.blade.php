@@ -1,6 +1,6 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <router-link class="navbar-brand" to="/"><img src="https://www.facico-uaemex.mx/2018-2022/sitio/sitio/img/areas/uaem-facico.png" height="50" width="60"></router-link>
+  <router-link class="navbar-brand" to="/"><img src="{{ asset('/images/1626209036.png')}}" height="50" width="60"></router-link>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -11,10 +11,10 @@
 
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ">
-        <a href="{{ route('home') }}" class="text-white nav-link">Home</a>
+        <a href="{{ route('home') }}" class="text-white nav-link"><i class="fa fa-1x fa-home"></i> Home</a>
       </li>
       <li class="nav-item ">
-        <router-link to="/licenciaturas" class="text-white nav-link">Licenciaturas</router-link>
+        <router-link to="/licenciaturas" class="text-white nav-link"><i class="fa fa-1x fa-graduation-cap"></i> Licenciaturas</router-link>
       </li>
       
     </ul>
@@ -26,7 +26,7 @@
         
         <li class="nav-item"></li>
 
-      <a class="nav-link" href="{{ route('logout') }}"
+      <a class="nav-link fa fa-1x fa-sign-out-alt" href="{{ route('logout') }}"
         onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
          {{ __('Logout') }}
@@ -39,7 +39,7 @@
 
       </li>
 
-      <li class="nav-item dropdown">
+      {{--  <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Perfil
         </a>
@@ -47,7 +47,7 @@
           <a class="dropdown-item" href="#">Perfil</a>
 
         </div>
-      </li>
+      </li>  --}}
 
     </ul>
 
@@ -55,3 +55,8 @@
 
   </div>
 </nav>
+
+
+<div class="bg-dark2 text-center text-white p-2" style="background-color: rgba(253, 246, 246, 0.2);">
+    
+</div>

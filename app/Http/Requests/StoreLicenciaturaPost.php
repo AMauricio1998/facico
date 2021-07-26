@@ -6,6 +6,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreLicenciaturaPost extends FormRequest
 {
+
+    public function messages(){
+        return[
+            'nombre.required' => 'El nombre de la licenciatura es requerida',
+        ];
+    }
     /**
      * Determine if the user is authorized to make this request.
      *

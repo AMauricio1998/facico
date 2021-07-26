@@ -2,8 +2,9 @@
 
 @section('content')<br>
 
-    <table class="table">
-        <thead>
+    <table class="table table-dark table-striped " style="border-radius: 10px; overflow: hidden;">
+
+        <thead class="thead-light text-center">
             <tr>
                 <td>
                     ID
@@ -28,7 +29,7 @@
                 </td>
             </tr>       
         </thead>
-        <tbody>
+        <tbody class="text-center">
             @foreach ($contacts as $contact)
             <tr>
                 <td>
@@ -50,9 +51,9 @@
                     {{ $contact->updated_at->format('d-M-Y') }}
                 </td>
                 <td>
-                    <a href="{{ route('contact.show', $contact->id) }}" class="btn btn-primary">Ver</a>
+                    <a href="{{ route('contact.show', $contact->id) }}" class="btn btn-primary mt-2 ml-2 fa fa-1x fa-eye"></a>
+                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{  $contact->id }}" class="btn btn-danger mt-2 ml-2 fa fa-1x fa-trash-alt"></button>
                     
-                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{  $contact->id }}" class="btn btn-danger">Eliminar</button>
                 </td>
             </tr> 
             @endforeach
@@ -73,6 +74,9 @@
             </div>
             <div class="modal-body">
               <p>¿Seguro que deseas borrar el registro seleccionado?</p>
+
+              <p>El registro de borrara permanentemente</p>
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -104,7 +108,7 @@
             $('#formDelete').attr('action', action)
 
             var modal = $(this)
-            modal.find('.modal-title').text('Vas a borrar el POST ' + id)
+            modal.find('.modal-title').text('Vas a borrar el contacto el id de ' + id)
           })
             }
       </script>

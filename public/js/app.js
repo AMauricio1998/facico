@@ -2212,7 +2212,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     this.getPrestamos();
@@ -38289,43 +38288,65 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "row" },
+    { staticClass: "row", staticStyle: { "background-color": "transparent" } },
     _vm._l(_vm.licenciaturas, function(licenciatura) {
-      return _c("div", { key: licenciatura.id, staticClass: "col-md-3" }, [
-        _c(
-          "div",
-          { staticClass: "card mt-3" },
-          [
-            _c(
-              "router-link",
-              {
-                attrs: {
-                  to: {
-                    name: "prestamo-licenciatura",
-                    params: { licenciatura_id: licenciatura.id }
-                  }
-                }
-              },
-              [
-                _c("img", {
-                  staticClass: "card-img-top mt-3",
+      return _c(
+        "div",
+        {
+          key: licenciatura.id,
+          staticClass: "col-md-3",
+          staticStyle: { "background-color": "transparent" }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "card mt-3",
+              staticStyle: {
+                "background-color": "#f0ffff",
+                "border-radius": "15px"
+              }
+            },
+            [
+              _c(
+                "router-link",
+                {
                   attrs: {
-                    src: "/images_licenciatura/simbolo-de-psicologia.svg",
-                    alt: "..."
+                    to: {
+                      name: "prestamo-licenciatura",
+                      params: { licenciatura_id: licenciatura.id }
+                    }
                   }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-body" }, [
-                  _c("h5", { staticClass: "card-title text-center" }, [
-                    _vm._v(_vm._s(licenciatura.nombre))
+                },
+                [
+                  _c("img", {
+                    staticClass: "card-img-top mt-3",
+                    attrs: {
+                      src: "/images_licenciatura/simbolo-de-psicologia.svg",
+                      alt: "..."
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body" }, [
+                    _c(
+                      "h5",
+                      {
+                        staticClass: "card-title text-center",
+                        staticStyle: {
+                          "background-color": "#f0ffff",
+                          "border-radius": "15px"
+                        }
+                      },
+                      [_vm._v(_vm._s(licenciatura.nombre))]
+                    )
                   ])
-                ])
-              ]
-            )
-          ],
-          1
-        )
-      ])
+                ]
+              )
+            ],
+            1
+          )
+        ]
+      )
     }),
     0
   )
@@ -38366,7 +38387,7 @@ var render = function() {
                 "div",
                 {
                   staticClass: "card-header",
-                  staticStyle: { "background-color": "#e0ffff" }
+                  staticStyle: { "background-color": "#2d5135" }
                 },
                 [
                   _c("img", {
@@ -38555,7 +38576,7 @@ var render = function() {
               staticClass: "card-img-top",
               staticStyle: {
                 "border-radius": "15px",
-                "background-color": "#e0ffff"
+                "background-color": "#2d5135"
               },
               attrs: { src: "/images/" + prestamo.image }
             }),

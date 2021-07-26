@@ -20,7 +20,8 @@
           }
     </style>
 </head>
-<body>
+
+<body style="background-image: url('{{ asset('images/laguna.jpg')}}');">
 
     @include('dashboard.partials.nav-header-main')
 
@@ -29,5 +30,6 @@
             @yield('content')
     </div>
 
+    {{--  @include('web.partials.footer-main')  --}}
 </body>
 </html>

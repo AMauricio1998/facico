@@ -1,7 +1,8 @@
 
         @csrf
-
-        <div class="form-group">
+    <div class="container-lg bg-white" style="width: 50rem; border-radius: 15px;">
+        <hr>
+        <div class="form-group mt-4">
             <label for="nombre">Nombre</label>
             <input class="form-control" type="text" name="nombre" id="nombre" value="{{ old('nombre', $prestamo->nombre) }}">
             
@@ -117,3 +118,5 @@
         <div class="form-group">
             <input class="btn btn-primary" type="submit" value="Registrar">
         </div>
+        <hr>
+    </div>

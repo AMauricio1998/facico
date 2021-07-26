@@ -6,6 +6,15 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUserPut extends FormRequest
 {
+
+    public function messages(){
+        return[
+            'name.required' => 'El nombre es requerido',
+            'surname.required' => 'El apellido es requerido',
+            'email.required' => 'El email es requerido',
+        ];
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      *

@@ -2,7 +2,6 @@
 
 <template>
     <div>
-        
 
         <prestamo-list-default 
             :key="currentPage"

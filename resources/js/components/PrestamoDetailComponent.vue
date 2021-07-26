@@ -4,7 +4,7 @@
     <div>
     <div v-if="prestamo">
         <div class="card mt-3  mb-3" style="width: 40rem; border-radius: 15px; " >
-            <div class="card-header" style="background-color: #e0ffff">
+            <div class="card-header" style="background-color: #2d5135">
                 <img v-bind:src="  '/images/' + prestamo.imagen.image" class="card-img-top" style="border-radius: 15px;">
             </div>
             <div class="card-body">

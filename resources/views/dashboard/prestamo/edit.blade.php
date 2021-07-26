@@ -10,15 +10,15 @@
         @include('dashboard.prestamo._form')
     </form>
     
-<br>
 
+<div class="container-lg bg-white" style="width: 50rem; border-radius: 15px;">
+    <hr>
 
     <form action="{{ route('prestamo.imagen', $prestamo) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="row">
-
+    <div class="row">
             <div class="col">
-                <input type="file" name="image"  class="form-control"> 
+                <input type="file" name="image" value="{{ $prestamo->image }}"  class="form-control"> 
             </div>
 
             <div class="col">
@@ -26,6 +26,7 @@
             </div>
         </div>
     </form>
-_form
+<hr>
+</div>
 
 @endsection

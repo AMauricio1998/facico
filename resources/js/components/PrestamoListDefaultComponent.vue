@@ -2,8 +2,8 @@
 
 <template>
     <div>
-        <div class="card mt-3 mb-3" style="width: 40rem; border-radius: 15px;" v-for="prestamo in prestamos" v-bind:key="prestamo.nombre" >
-            <img v-bind:src="  '/images/' + prestamo.image" class="card-img-top" style="border-radius: 15px; background-color: #e0ffff">
+        <div class="card mt-3 mb-3" style="width: 40rem; border-radius: 15px; " v-for="prestamo in prestamos" v-bind:key="prestamo.nombre" >
+            <img v-bind:src="  '/images/' + prestamo.image" class="card-img-top" style="border-radius: 15px; background-color: #2d5135">
             
             <div class="card-body" style="border-radius: 15px;">
               <h5 class="card-title">Prestamo hecho a: {{ prestamo.nombre }}  {{ prestamo.apellidos }}</h5>

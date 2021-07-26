@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Prestamo;
-use Illuminate\Http\Request;
-use App\Http\Requests\StorePrestamoPost;
 use App\licenciatura;
 use App\PrestamoImage;
-use App\User;
+use Illuminate\Http\Request;
+use App\Exports\PrestamoExport;
+use App\Exports\PrestamoAllExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\StorePrestamoPost;
+use Carbon\Carbon;
+
+// sfzzckmefxnsurac
 
 class PrestamoController extends Controller
 {
@@ -18,12 +24,42 @@ class PrestamoController extends Controller
         $this->middleware('rol.user');
     }
 
+    //--------------------------------------------------------------------------------------------
     
-    public function index(User $user)
+    public function export(){
+        return Excel::download(new PrestamoExport, 'prestamos.xlsx');
+    }
+
+
+
+    //--------------------------------------------------------------------------------------------
+
+    public function prestamoall(Prestamo $prestamo, Request $request){
+
+        $prestamos = Prestamo::with('licenciatura')
+        ->orderBy('created_at', request('created_at', 'DESC'));
+
+        if($request->has('search')){
+            $prestamos = $prestamos->where('nombre', 'like', '%'.request('search').'%');
+        }
+
+        $prestamos = $prestamos->paginate(10);
+
+        return view('dashboard.prestamo.prestamoall', ['prestamos' => $prestamos]);
+    }
+
+    
+    public function index(User $user,  Request $request)
     {
-        $prestamos = Prestamo::with('licenciatura')->orderBy('created_at', 'desc')
-        ->where('activo', '=', '1')
-        ->paginate(10);
+        $prestamos = Prestamo::with('licenciatura')
+        ->orderBy('created_at', request('created_at', 'DESC'))
+        ->where('activo', '=', '1');
+
+        if($request->has('search')){
+            $prestamos = $prestamos->where('nombre', 'like', '%'.request('search').'%');
+        }
+
+        $prestamos = $prestamos->paginate(10);
 
         return view('dashboard.prestamo.index', ['prestamos' => $prestamos]);
     }
@@ -69,10 +105,10 @@ class PrestamoController extends Controller
     
     public function edit(Prestamo $prestamo)
     {
-        
+
         $licenciaturas = licenciatura::pluck('id', 'nombre');
 
-        $prestamo->imagen->image;
+        // $prestamo->imagen->image;
 
         return view('dashboard.prestamo.edit', [
             'prestamo' => $prestamo, 
