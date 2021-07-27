@@ -26,6 +26,14 @@ class PrestamoController extends Controller
 
     //--------------------------------------------------------------------------------------------
     
+    public function exportPDF(){
+        $today = Carbon::now()->timezone('America/Mexico_City')->format('d/m/Y');
+        $prestamos = Prestamo::all();
+
+        $pdf = \PDF::loadView('dashboard.pdf.exportPDF', compact('prestamos', 'today'));
+        return $pdf->download('prestamos.pdf');
+    }
+
     public function export(){
         return Excel::download(new PrestamoExport, 'prestamos.xlsx');
     }

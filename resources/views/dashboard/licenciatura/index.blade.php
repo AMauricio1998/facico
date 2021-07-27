@@ -35,10 +35,11 @@
                 <td>{{$licenciatura->created_at->format('d-m-Y')}}</td>
 
                 <td>
-                  <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $licenciatura->id }}" class="btn btn-danger float-right submit btn-sm mt-2 ml-2"><i class="fa fa-1x fa-trash-alt"></i></button>  
 
-                  <a href="{{ route('licenciatura.edit', $licenciatura->id) }}" class="btn btn-success float-right submit btn-sm mt-2 ml-2"><i class="fa fa-1x fa-edit"></i></a>                                 
-                    <a href="{{ route('licenciatura.show', $licenciatura->id) }}" class="btn btn-primary float-right submit btn-sm mt-2 ml-2"><i class="fa fa-1x fa-eye"></i></a>  
+                  <a href="{{ route('licenciatura.show', $licenciatura->id) }}" class="btn btn-primary  submit btn-sm mt-2 ml-2"><i class="fa fa-1x fa-eye"></i></a>  
+                  <a href="{{ route('licenciatura.edit', $licenciatura->id) }}" class="btn btn-success  submit btn-sm mt-2 ml-2"><i class="fa fa-1x fa-edit"></i></a>                                 
+
+                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $licenciatura->id }}" class="btn btn-danger  submit btn-sm mt-2 ml-2"><i class="fa fa-1x fa-trash-alt"></i></button>  
 
                 </td>
             </tr>

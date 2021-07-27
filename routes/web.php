@@ -28,13 +28,14 @@ Route::get('/prestamo-all', 'PrestamoController@prestamoall')->name('prestamo.al
 
 Route::resource('dashboard/licenciatura', 'licenciaturaController');
 Route::resource('dashboard/user', 'UserController');
-Route::resource('dashboard/contact', 'ContactController')->only([
-  'index', 'show', 'destroy',
-]);
+Route::resource('dashboard/contact', 'ContactController');
 //------------------Excel--------------------------------------------------------
 
 Route::get('/dashboard/excel/prestamo-export', 'PrestamoController@export')->name('prestamo.export');
 
+//---------------------------------PDF--------------------------------------------
+
+Route::name('prestamo.pdf')->get('/prestamo/pdf', 'PrestamoController@exportPDF');
 
 //---------------------------------------------------------------------------------
 

@@ -1,6 +1,7 @@
 @extends('dashboard.master')
 
 @section('content')<br>
+<a class="btn btn-primary mt-2 mb-2" href="{{ route('contact.create') }}"><i class="fa fa-1x fa-plus-square"></i> Crear contacto </a>
 
     <table class="table table-dark table-striped " style="border-radius: 10px; overflow: hidden;">
 
@@ -52,6 +53,8 @@
                 </td>
                 <td>
                     <a href="{{ route('contact.show', $contact->id) }}" class="btn btn-primary mt-2 ml-2 fa fa-1x fa-eye"></a>
+                    <a href="{{ route('contact.edit', $contact->id) }}" class="btn btn-success  submit btn-sm mt-2 ml-2 fa fa-1x fa-edit"></a>
+
                     <button data-toggle="modal" data-target="#deleteModal" data-id="{{  $contact->id }}" class="btn btn-danger mt-2 ml-2 fa fa-1x fa-trash-alt"></button>
                     
                 </td>

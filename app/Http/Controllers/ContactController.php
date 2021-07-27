@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use auth;
 use App\Contact;
-use App\Helpers\CustomUrl;
 use App\ContactImage;
+use App\Helpers\CustomUrl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
+use App\Http\Requests\StoreContactPost;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
@@ -17,6 +19,7 @@ class ContactController extends Controller
         $this->middleware('auth');
         $this->middleware('rol.user');
     }
+
     
     public function index()
     {
@@ -26,6 +29,19 @@ class ContactController extends Controller
         return view('dashboard.contact.index',['contacts' => $contacts]);
     }
 
+    public function create()
+    {
+        return view("dashboard.contact.create", ['contact' => new Contact()]);
+    }
+
+    
+    public function store(StoreContactPost $request)
+    {
+        Contact::create($request->validated());
+
+        return back()->with('status', 'Contacto registrado con exito!');
+    }
+
     
      public function show(Contact $contact)
      {
@@ -33,6 +49,19 @@ class ContactController extends Controller
 
              return view("dashboard.contact.show", ["contact" => $contact]);
      }
+
+     public function edit(Contact $contact)
+    {
+        return view('dashboard.contact.edit',  ['contact' => $contact]);
+    }
+
+    
+    public function update(StoreContactPost $request, Contact $contact)
+    {
+        $contact->update($request->validated());
+
+        return back()->with('status', 'Contacto actualizado con exito!');
+    }
 
 
      public function destroy(Contact $contact)

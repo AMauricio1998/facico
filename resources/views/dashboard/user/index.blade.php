@@ -35,7 +35,7 @@
             </tr>
         </thead>
     
-        <tbody>
+        <tbody class="text-center">
             @foreach ($users as $user )
             <tr>
                 <td>{{$user->id}}</td>
@@ -45,11 +45,12 @@
                 <td>{{$user->rol->key}}</td>
                 <td>{{$user->created_at->format('d-m-Y')}}</td>
                 <td>
-                  <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $user->id }}" class="btn btn-danger float-right submit btn-sm  mt-2 ml-2 fa fa-1x fa-trash-alt"></button>  
                   
-                  <a href="{{ route('user.edit', $user->id) }}" class="btn btn-success float-right submit btn-sm mt-2 ml-2 fa fa-1x fa-edit"></a>                                 
-                    <a href="{{ route('user.show', $user->id) }}" class="btn btn-primary float-right submit btn-sm mt-2 ml-2 fa fa-1x fa-eye"></a>  
+                  <a href="{{ route('user.show', $user->id) }}" class="btn btn-primary  submit btn-sm mt-2 ml-2 fa fa-1x fa-eye"></a>  
+                  <a href="{{ route('user.edit', $user->id) }}" class="btn btn-success  submit btn-sm mt-2 ml-2 fa fa-1x fa-edit"></a>                                 
                     
+                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $user->id }}" class="btn btn-danger  submit btn-sm  mt-2 ml-2 fa fa-1x fa-trash-alt"></button>  
+
                 </td>
             </tr>
             @endforeach

@@ -5,9 +5,9 @@
 
     {{-- @include('dashboard.partials.validation-error') --}}
 
-    <form action="{{ route('licenciatura.update', $licenciatura->id) }}" method="POST">
+    <form action="{{ route('contact.update', $contact->id) }}" method="POST">
         @method('PUT')
-        @include('dashboard.licenciatura._form')
+        @include('dashboard.contact._form')
     </form>
 
 @endsection

@@ -94,15 +94,16 @@
                 {{--  <td>{{$prestamo->activo}}</td>  --}}
                 
                 <td>
+
+                    <a href="{{ route('prestamo.show', $prestamo->id) }}" class="btn btn-primary  submit btn-sm mt-2 ml-2 fa fa-1x fa-eye"></a>
+                    <a href="{{ route('prestamo.edit', $prestamo->id) }}" class="btn btn-success  submit btn-sm mt-2 ml-2 fa fa-1x fa-edit"></a>
+                    
                     <button data-toggle="modal" data-target="#deleteModal" 
-                    data-id="{{ $prestamo->id }}" class="btn btn-danger float-right submit btn-sm mt-2 ml-2 fa fa-1x fa-trash-alt">
+                    data-id="{{ $prestamo->id }}" class="btn btn-danger  submit btn-sm mt-2 ml-2 fa fa-1x fa-trash-alt">
                     </button>
 
-                    <a href="{{ route('prestamo.edit', $prestamo->id) }}" class="btn btn-success float-right submit btn-sm mt-2 ml-2 fa fa-1x fa-edit"></a>
-                    <a href="{{ route('prestamo.show', $prestamo->id) }}" class="btn btn-primary float-right submit btn-sm mt-2 ml-2 fa fa-1x fa-eye"></a>
-                    
                     <button data-id="{{ $prestamo->id }}"
-                        class=" mt-2 approved fa fa-1x fa-undo-alt btn btn-{{ $prestamo->activo == 1 ?  "success" : "danger" }}">
+                        class=" mt-2 approved fa fa-1x a-fundo-alt btn btn-{{ $prestamo->activo == 1 ?  "success" : "danger" }}">
                         {{$prestamo->activo == 1 ? " Devolver ": " Devuelto "}}
                     </button>
                 
