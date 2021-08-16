@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Prestamo;
+use Carbon\Carbon;
 use App\licenciatura;
 use App\PrestamoImage;
 use Illuminate\Http\Request;
 use App\Exports\PrestamoExport;
-use App\Exports\PrestamoAllExport;
+use App\Exports\PrestamoExportView;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StorePrestamoPost;
-use Carbon\Carbon;
 
 // sfzzckmefxnsurac
 
@@ -24,7 +24,7 @@ class PrestamoController extends Controller
         $this->middleware('rol.user');
     }
 
-    //--------------------------------------------------------------------------------------------
+    //-------------------------------PDF-------------------------------------------------------------
     
     public function exportPDF(){
         $today = Carbon::now()->timezone('America/Mexico_City')->format('d/m/Y');
@@ -33,14 +33,12 @@ class PrestamoController extends Controller
         $pdf = \PDF::loadView('dashboard.pdf.exportPDF', compact('prestamos', 'today'));
         return $pdf->download('prestamos.pdf');
     }
-
+//---------------------------Excel-----------------------------
     public function export(){
         return Excel::download(new PrestamoExport, 'prestamos.xlsx');
     }
-
-
-
-    //--------------------------------------------------------------------------------------------
+   
+//--------------------------------------------------------------------------------------------
 
     public function prestamoall(Prestamo $prestamo, Request $request){
 

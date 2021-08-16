@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class WebController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index() {
         return view("web.index");      
     }

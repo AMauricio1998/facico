@@ -1,7 +1,7 @@
 
 
     window.Vue = require('vue');
-import Vue from 'vue';
+    import Vue from 'vue';
     import VueRouter from 'vue-router';
     import PrestamoList from "../components/PrestamoListComponent.vue";
     import PrestamoDetail from "../components/PrestamoDetailComponent.vue";

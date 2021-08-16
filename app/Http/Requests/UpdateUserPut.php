@@ -12,6 +12,7 @@ class UpdateUserPut extends FormRequest
             'name.required' => 'El nombre es requerido',
             'surname.required' => 'El apellido es requerido',
             'email.required' => 'El email es requerido',
+            
         ];
     }
 

@@ -12,7 +12,7 @@
         <option {{ request('created_at') == "ASC" ? "selected" : '' }} value="ASC">Ascendente</option>
     </select>
 
-    <input type="text" value="{{ request('search') }}" name="search" placeholder="Buscar..." class="form-control ml-1">
+    <input type="text" value="{{ request('search') }}" name="search" placeholder="Buscar por nombre..." class="form-control ml-1">
     <button type="submit" class="btn btn-primary ml-2"><i class="fa fa-1x fa-search"></i></button>
 
 </form>

@@ -6,7 +6,7 @@
         <div class="col-lg-5 offset-lg-0 col-md-8 offset-md-3 col-10" style="background: transparent">
             <div class="card">
                 
-                <div class="card-header text-center" style="font-size: large; font-family: fantasy">
+                <div class="card-header text-center" style="font-size: large; font-family: fantasy;">
                     <img class="img-fluid mx-auto d-block rounded"
                     src="{{ asset('images/1626209036.png') }}" />
                     {{ __('Login') }}

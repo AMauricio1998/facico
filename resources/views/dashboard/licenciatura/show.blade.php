@@ -12,6 +12,5 @@
         </div>
     <hr>
 </div>
-
     
 @endsection
